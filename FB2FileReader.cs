@@ -14,7 +14,11 @@ namespace Thumbnailer
         {
             FData = null;
         }
-
+        /// <summary>
+        /// In case if there are no covers in current file just returning a 0 to prevent
+        /// performing of a further work
+        /// </summary>
+        /// <returns></returns>
         public int Read(byte[] AInput)
         {
             FData = GetImageContent(AInput);
@@ -23,7 +27,11 @@ namespace Thumbnailer
             else
                 return 0;
         }
-
+        /// <summary>
+        /// Reading a list of "coverpage" XML entries, after that trying to find 
+        /// the content of a first entry from this list.
+        /// </summary>
+        /// <returns></returns>
         private String GetImageContent(byte[] AInput)
         {
             String vResult = null;
@@ -36,8 +44,7 @@ namespace Thumbnailer
             {
                 XmlNode vImage = vCovers.Item(0).FirstChild;
                 if (vImage != null)
-                {
-                    Console.Out.WriteLine("Image name: " + vImage.Name);
+                {                    
                     if (vImage.Name.Equals("image"))
                     {
                         XmlAttributeCollection vAttributes = vImage.Attributes;
@@ -69,7 +76,10 @@ namespace Thumbnailer
             }
             return vResult;
         }
-
+        /// <summary>
+        /// Images in FB2 are stored in base64 encoding, decoding stored data
+        /// </summary>
+        /// <returns></returns>
         public byte[] GetBuffer()
         {
             byte[] vData;
