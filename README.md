@@ -8,7 +8,6 @@ Visual Studio 2012 Express can be used to create a binary file. By default it's 
 After creating a library file you need to register it:
 
 x86: %windir%\Microsoft.NET\Framework\v4.0.30319\RegAsm /codebase bin\Release\FBThumbs.dll
-
 x64: %windir%\Microsoft.NET\Framework64\v4.0.30319\RegAsm /codebase bin\Release\FBThumbs.dll
 
 After that you need to add registry entries:
